@@ -1,0 +1,12 @@
+.App {
+  text-align: center;
+}
+html, body, .App {
+  margin: 0;
+}
+@view-transition {
+  navigation: auto;
+}
+::view-transition-group(root) {
+  animation-duration: 0.5s;
+}
