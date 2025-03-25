@@ -1,6 +1,6 @@
 {
     "name": "Tina-Turner-Insurancebot",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "A web app that chats with a potential car insurance customer and recommends the most suitable insurance policy based on the attributes of the users. Tina will recommend one of either Mechanical Breakdown Insurance (MBI), Comprehensive Car Insurance, or Third Party Car Insurance, and provide reasons to support the recommendation.",
     "private": true,
     "dependencies": {
@@ -11,6 +11,7 @@
         "@testing-library/user-event": "^13.5.0",
         "axios": "^1.8.3",
         "cors": "^2.8.5",
+        "dotenv": "^16.4.7",
         "express": "^4.21.2",
         "node": "^20.19.0",
         "react": "^19.0.0",
@@ -22,8 +23,10 @@
     "scripts": {
         "jest": "jest",
         "api": "nodemon src/server.js &",
+        "react": "npm run client &",
         "client": "react-scripts start",
-        "start": "npm run api ; sleep 1; echo 'starting client in 1...'; sleep 1; npm run client",
+        "server": "nodemon src/server.js",
+        "start": "npm run api ; sleep 1; echo 'starting client in 1...'; sleep 1; npm run react ; sleep 1 ; open http://localhost:3000",
         "build": "react-scripts build",
         "test": "jest ; react-scripts test",
         "eject": "react-scripts eject"
@@ -49,5 +52,6 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
-    }
+    },
+    "type": "module"
 }
