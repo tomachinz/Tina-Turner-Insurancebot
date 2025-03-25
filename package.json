@@ -21,9 +21,9 @@
     },
     "scripts": {
         "jest": "jest",
-        "api": "nodemon src/server.js",
+        "api": "nodemon src/server.js &",
         "client": "react-scripts start",
-        "start": "npm run api ; npm run clien",
+        "start": "npm run api ; sleep 1; echo 'starting client in 1...'; sleep 1; npm run client",
         "build": "react-scripts build",
         "test": "jest ; react-scripts test",
         "eject": "react-scripts eject"
