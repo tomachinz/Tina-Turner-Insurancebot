@@ -2,22 +2,18 @@ import {
   generateBasePrompt,
   generateEvaluationPrompt,
   generateQuestionPrompt,
-} from "./insuranceUtils.js";
-// import {
-//   generateBasePrompt,
-//   generateEvaluationPrompt,
-//   generateQuestionPrompt,
-// } from "./promptUtils.js";
+} from "./promptUtils.js";
+
 /**
  * Generates the prompt for the AI based on interview context
- * @param {string} carMakeModel - The position being interviewed for
+ * @param {string} jobTitle - The position being interviewed for
  * @param {string} userMessage - The latest message from the candidate
  * @param {Array} messageHistory - Previous conversation history
  */
-const generatePrompt = (carMakeModel, userMessage, messageHistory) => {
-  if (typeof carMakeModel == "boolean") {
+const generatePrompt = (jobTitle, userMessage, messageHistory) => {
+  if (typeof jobTitle == "boolean") {
     return {
-      error: `The provided input carMakeModel ${carMakeModel} is a boolean, but should be a string.`,
+      error: `The provided input jobTitle ${jobTitle} is a boolean, but should be a string.`,
     };
   }
 
@@ -33,9 +29,9 @@ const generatePrompt = (carMakeModel, userMessage, messageHistory) => {
     };
   }
 
-  if (typeof carMakeModel == "number") {
+  if (typeof jobTitle == "number") {
     return {
-      error: `The provided input carMakeModel ${carMakeModel} is a number, but should be a string.`,
+      error: `The provided input jobTitle ${jobTitle} is a number, but should be a string.`,
     };
   }
 
@@ -51,9 +47,9 @@ const generatePrompt = (carMakeModel, userMessage, messageHistory) => {
     };
   }
 
-  if (!carMakeModel || typeof carMakeModel !== "string") {
+  if (!jobTitle || typeof jobTitle !== "string") {
     return {
-      error: `The provided input carMakeModel is invalid, but should be a non-empty string.`,
+      error: `The provided input jobTitle is invalid, but should be a non-empty string.`,
     };
   }
 
@@ -72,7 +68,7 @@ const generatePrompt = (carMakeModel, userMessage, messageHistory) => {
   const questionCount = messageHistory.filter(
     (messageHistoryItem) => messageHistoryItem.role === "model"
   ).length;
-  const basePrompt = generateBasePrompt(carMakeModel, messageHistory);
+  const basePrompt = generateBasePrompt(jobTitle, messageHistory);
 
   if (questionCount >= 6) {
     return generateEvaluationPrompt(basePrompt);

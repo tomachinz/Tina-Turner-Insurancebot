@@ -7,8 +7,6 @@ import { BiSend } from "react-icons/bi";
 
 const port = process.env.REACT_APP_SERVER_PORT || 4000;
 console.log(`Connecting to backend via port ${port}`);
-const csrfToken = `_DERKA!_csrfToken`; // MUHAMED
-// used to store the session ID for save history
 let sessionID;
 
 const Chatbox = () => {
@@ -59,7 +57,7 @@ const Chatbox = () => {
     setIsInterviewStarted(true);
     const initialMessage = {
       sender: "interviewer",
-      text: "Tell me about yourself.",
+      text: "So I take it you are looking for car insurance for your "+carMakeModel+"?",
     };
     setMessages([initialMessage]);
   };
@@ -150,7 +148,7 @@ const Chatbox = () => {
           </div>
         )}
 
-        {/* Job title input or display section */}
+        {/* car make model input or display section */}
         <div className={styles.carMakeModelContainer}>
           <div className={styles.inputWrapper}>
             {isInterviewStarted ? (
@@ -161,7 +159,7 @@ const Chatbox = () => {
               <>
                 <input
                   type="text"
-                  placeholder="Enter Job Title "
+                  placeholder="Enter Car Make Model and Year"
                   value={carMakeModel}
                   onChange={(e) => setCarMakeModel(e.target.value)}
                   disabled={isInterviewStarted}
@@ -172,9 +170,8 @@ const Chatbox = () => {
                   className={styles.startButton}
                   disabled={!carMakeModel.trim()}
                 >
-                  Set Job Title!
+                  Set Car Make Mode and Year!
                 </button>
-                <input type="hidden" name="_csrf" value={csrfToken}></input>
               </>
             )}
           </div>

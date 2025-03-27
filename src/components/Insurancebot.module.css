@@ -22,7 +22,7 @@
   visibility: visible;
 }
 
-.jobTitleContainer {
+.carMakeModelContainer {
   height: 8%;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
@@ -77,7 +77,7 @@
   border-radius: 8px;
 }
 
-.jobTitleInput {
+.carMakeModelInput {
   padding: 8px 12px;
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 8px;
@@ -92,7 +92,7 @@
   margin-right: 10px;
 }
 
-.jobTitleInput:focus {
+.carMakeModelInput:focus {
   outline: none;
   border-color: #4f46e5;
 }
