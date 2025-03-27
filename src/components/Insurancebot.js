@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
-import styles from "./Chatbox.module.css";
+import styles from "./Insurancebot.module.css";
 import { FaTimes, FaMinus } from "react-icons/fa";
 import { TiMessages } from "react-icons/ti";
 import { BiSend } from "react-icons/bi";
@@ -17,7 +17,7 @@ const Chatbox = () => {
   const [messages, setMessages] = useState([]); // Maintains chat history between user and AI
   const [userInput, setUserInput] = useState(""); // Handles current user input in textarea
   const [isInterviewStarted, setIsInterviewStarted] = useState(false); // Controls interview flow
-  const [isChatboxVisible, setIsChatboxVisible] = useState(false); // Controls chat window visibility
+  const [isChatboxVisible, setIsChatboxVisible] = useState(true); // Controls chat window visibility
   const [isTyping, setIsTyping] = useState(false); // Controls typing animation display
   const messagesEndRef = useRef(null); // Reference for auto-scrolling to latest message
 
@@ -34,7 +34,7 @@ const Chatbox = () => {
   // Sets initial state and sends welcome message
   const startInterview = async () => {
     if (!carMakeModel.trim()) {
-      alert("Please enter a job title");
+      alert("Please enter your vehicle Make Model and Year");
       return;
     }
     
@@ -100,7 +100,7 @@ const Chatbox = () => {
 
       // Artificial delay for more natural conversation flow
       await new Promise((resolve) => setTimeout(resolve, 1500));
-      console.log(`http://localhost:${port}/api/icsrfTokennterview`);
+      console.log(`http://localhost:${port}/api/insurance`);
 
       // Make API call and process response
       const response = await axios.post(`http://localhost:${port}/api/insurance`, requestBody);
@@ -155,7 +155,7 @@ const Chatbox = () => {
           <div className={styles.inputWrapper}>
             {isInterviewStarted ? (
               <div className={styles.carMakeModelDisplay}>
-                You're applying for the position: {carMakeModel}
+                We're discussing insurance options for your: {carMakeModel}
               </div>
             ) : (
               <>

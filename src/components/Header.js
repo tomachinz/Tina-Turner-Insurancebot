@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <img src={logo} alt="logo" className={styles.logo} />
-      <h1 className={styles.title}>Tuners Car Chatbox</h1>
+      <h1 className={styles.title}>Tuners Cars</h1>
       <div className={styles.contactInfo}>
         <div className={styles.contactItem}>
           <FaPhone className={styles.icon} />
