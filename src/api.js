@@ -122,9 +122,10 @@ api.post("/api/insurance", async (req, res) => {
 
 api.post("/api/start-session", async (req, res) => {
   const  carMakeModel  = JSON.stringify( req.body.carMakeModel );
-  console.log(`API req looking for  carMakeModel: ${ carMakeModel}`);
   sessionID =  startSession(carMakeModel);
-  res.status(200).send(sessionID);
+  console.log(`API is sending in response  carMakeModel: ${ carMakeModel} sessionID: ${sessionID}`);
+
+  res.status(200).json({sessionID: sessionID});
 });
 api.post("/api/save-session", async (req, res) => {
   const { carMakeModel, messageHistory, sessionID } = req.body;

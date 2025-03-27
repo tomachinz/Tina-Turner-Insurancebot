@@ -48,7 +48,9 @@ const Insurancebot = () => {
 
       if (sessionID === -1) {
          try {
-          sessionID = (await axios.post(`http://localhost:${port}/api/start-session`, requestBody)).data.sessionID;
+          const response  = (await axios.post(`http://localhost:${port}/api/start-session`, requestBody))          ;
+          sessionID = response.data.sessionID;
+          console.log(`sessionID ${sessionID}`);
         } catch(error) {
           console.log(`ERROR STARTING SESSION: ${error}`);
         }

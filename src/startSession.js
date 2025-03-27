@@ -11,9 +11,7 @@ const startSession = (carMakeModel) => {
   const sessionID = new Date().toISOString().replace(/[:.]/g, '-');
   const logFilePath = path.join(__dirname, "logs",  `${sessionID}.log`);
   console.log(`Server started session: ${sessionID} with carMakeModel: ${carMakeModel}`);
-
-  const logData = `Session started.  ${sessionID}`;
-  fs.writeFileSync(logFilePath, logData);
+  fs.writeFileSync(logFilePath, sessionID);
   return sessionID;
 };
 
