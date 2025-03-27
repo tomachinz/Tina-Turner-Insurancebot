@@ -2,6 +2,7 @@ import * as fs from 'node:fs/promises';
 import { appendFileSync } from 'node:fs';
 import path from 'node:path';
 // import saveChatHistory from './saveChatHistory.js';
+const __dirname = import.meta.dirname;
 
 /** date +%Y%m%d_%H%M%S
  * Generates the prompt for the AI based on interview context
@@ -22,9 +23,9 @@ export default function saveChatHistory(data, sessionID) {
     };
   }
   
-  const file = path.join(__dirname, sessionID + ".log")
-  console.log("about to save: "  , file);
-  fsPromises.open(file);
+  const file = path.join(__dirname,"logs", sessionID + ".log")
+  console.log("about to open: "  , file);
+  // fsPromises.open(file);
 
   try {
     appendFileSync(file, JSON.stringify(data)); // append to file

@@ -6,17 +6,17 @@ import axios from "axios";
 import dotenv from "dotenv";
 // import generatePrompt from "./generatePrompt.js";
 import insurancebotPrompt from "./insurancebotPrompt.js";
-// import sessionLogger from "./sessionLogger.js";
-// import saveChatHistory from "./saveChatHistory.js";
+import startSession from "./startSession.js";
+import saveChatHistory from "./saveChatHistory.js";
 
 const __dirname = import.meta.dirname;
+let sessionID = -1;
 
 dotenv.config();
 
 const api = express();
 const apiKey = process.env.GOOGLE_API_KEY;// Initialize Google Gemini AI with API key from .env file
 const port = process.env.REACT_APP_SERVER_PORT || 4000
-// let sessionID = -1;
 const generationConfig = { // AI model configuration
   temperature: 0.3, // Controls response randomness (0.0-1.0)
   maxOutputTokens: 1024, // Maximum length of generated responses
@@ -73,6 +73,9 @@ api.post("/api/insurance", async (req, res) => {
         }
       );
      
+      console.log(`sessionID: ${sessionID}`);
+      saveChatHistory(response.data, sessionID);
+
 
       // Debug logging for AI response
       console.log("Gemini Result:", JSON.stringify(response.data, null, 2));
@@ -117,15 +120,16 @@ api.post("/api/insurance", async (req, res) => {
 
 
 
-// api.post("/api/start-session", async (req, res) => {
-//   const { carMakeModel } = req.body;
-//   sessionID =  sessionLogger(carMakeModel );
-//   res.status(200).send(sessionID);
-// });
-// api.post("/api/save-session", async (req, res) => {
-//   const { carMakeModel, messageHistory, sessionID } = req.body;
-//   saveChatHistory(carMakeModel, messageHistory, sessionID);
-//   res.status(200).send(messageHistory);
-// });
+api.post("/api/start-session", async (req, res) => {
+  const  carMakeModel  = JSON.stringify( req.body.carMakeModel );
+  console.log(`API req looking for  carMakeModel: ${ carMakeModel}`);
+  sessionID =  startSession(carMakeModel);
+  res.status(200).send(sessionID);
+});
+api.post("/api/save-session", async (req, res) => {
+  const { carMakeModel, messageHistory, sessionID } = req.body;
+  saveChatHistory(carMakeModel, messageHistory, sessionID);
+  res.status(200).send(messageHistory);
+});
 
 export default api;

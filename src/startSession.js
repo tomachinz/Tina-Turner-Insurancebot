@@ -7,15 +7,15 @@ const __dirname = import.meta.dirname;
  * @param {string} jobTitle - The position being interviewed for
  * @returns {string} sessionID - The generated session ID
  */
-const sessionLogger = (jobTitle) => {
+const startSession = (carMakeModel) => {
   const sessionID = new Date().toISOString().replace(/[:.]/g, '-');
-  const logFilePath = path.join(__dirname, `${sessionID}.log`);
+  const logFilePath = path.join(__dirname, "logs",  `${sessionID}.log`);
+  console.log(`Server started session: ${sessionID} with carMakeModel: ${carMakeModel}`);
 
-  const logData = `Session started for job title: ${jobTitle}\n`;
+  const logData = `Session started.  ${sessionID}`;
   fs.writeFileSync(logFilePath, logData);
-
   return sessionID;
 };
 
-export default sessionLogger;
+export default startSession;
 

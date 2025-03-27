@@ -7,9 +7,10 @@ import { BiSend } from "react-icons/bi";
 
 const port = process.env.REACT_APP_SERVER_PORT || 4000;
 console.log(`Connecting to backend via port ${port}`);
-// let sessionID;
 
 const Insurancebot = () => {
+  let sessionID = -1;
+
   // Core state management for chat functionality
   const [carMakeModel, setCarMakeModel] = useState(""); // Stores the job position being interviewed for
   const [messages, setMessages] = useState([]); // Maintains chat history between user and AI
@@ -41,18 +42,20 @@ const Insurancebot = () => {
     
     
     // Timestamp will be the session ID for saving chat history
-    // async function sessionLogger(j) {
-    //   console.log("Starting interview for job title:", j);
-    //   const requestBody = { carMakeModel: j };
-    //   try {
-    //     sessionID = await axios.post(`http://localhost:${port}/api/start-session`, requestBody);
-    //     console.log(`Started sessionID: ${sessionID}`);
-    //   } catch(error) {
-    //     console.log(`ERROR STARTING SESSION: ${error}`);
-    //   }
-    // }
+    async function startSession(j) {
+      const requestBody = { carMakeModel: j };
+      console.log(`requestBody ${JSON.stringify(requestBody)}`);
 
-    // sessionLogger(carMakeModel);
+      if (sessionID === -1) {
+         try {
+          sessionID = (await axios.post(`http://localhost:${port}/api/start-session`, requestBody)).data.sessionID;
+        } catch(error) {
+          console.log(`ERROR STARTING SESSION: ${error}`);
+        }
+      }
+    }
+
+    startSession(carMakeModel);
 
     setIsInterviewStarted(true);
     const initialMessage = {
@@ -115,7 +118,7 @@ const Insurancebot = () => {
     } catch (error) {
       console.error("Error:", error);
       setIsTyping(false);
-      alert("Failed to get response from interviewer");
+      alert("Failed to get response from insurancebot.");
     }
   };
 
@@ -226,7 +229,7 @@ const Insurancebot = () => {
           </div>
         </form>
       </div>
-
+await
       {/* Floating chat button - visible when chat is minimized */}
       {!isChatboxVisible && (
         <div className={styles.chatButton} onClick={toggleChatbox}>
