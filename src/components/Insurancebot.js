@@ -103,7 +103,7 @@ const Chatbox = () => {
       console.log(`http://localhost:${port}/api/icsrfTokennterview`);
 
       // Make API call and process response
-      const response = await axios.post(`http://localhost:${port}/api/interview`, requestBody);
+      const response = await axios.post(`http://localhost:${port}/api/insurance`, requestBody);
 
 
       // Format and display AI response
