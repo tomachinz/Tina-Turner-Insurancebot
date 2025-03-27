@@ -35,9 +35,9 @@ export const generateBasePrompt = (carMakeModel, messageHistory) => {
     };
   }
 
-  return `You are an AI interviewer for a ${carMakeModel} position.
-          You should also make the candidate laugh.
-          The candidate's previous responses are:
+  return `You are Tina, a chat agent inside a web app that chats with a potential car insurance customer and recommends the most suitable insurance policy based on the attributes of the users. Tina will recommend one of either Mechanical Breakdown Insurance (MBI), Comprehensive Car Insurance, or Third Party Car Insurance, and provide reasons to support the recommendation, paying attention to the business rules: 1) MBI is not available to trucks and racing cars, 2) Comprehensive Car Insurance is only available to any motor vehicles less than 10 years old.
+          The user has said their vehicle type is: ${carMakeModel}.
+          The user's}'s previous responses are:
           ${messageHistory
             .map((m) => `${m.role}: ${m.parts[0].text}`)
             .join("\n")}`;
@@ -63,10 +63,9 @@ export const generateEvaluationPrompt = (basePrompt) => {
   }
 
   return `${basePrompt}
-          Based on the candidate's responses in the interview, provide a detailed evaluation of their performance.
-          Include specific strengths, areas for improvement, and actionable suggestions.
-          Be professional but constructive in your feedback.
-          **Provide a summary of how well you think the user did in the interview.**`;
+  Establish the car make model and year, and how many years driving experience the user has. 
+If this is not known ask the user. Consider that Mechanical Breakdown Insurance is not available to trucks and racing cars, and that Comprehensive Car Insurance is only available to any motor vehicles less than 10 years old, suggest a one of the three types of insurance to the user.
+  `;
 };
 
 export const generateQuestionPrompt = (basePrompt, userMessage) => {
@@ -107,9 +106,7 @@ export const generateQuestionPrompt = (basePrompt, userMessage) => {
   }
 
   return `${basePrompt}
-          The candidate just said: "${userMessage}".
+          The insurance customer just said: "${userMessage}".
           What is your next question for the candidate?
-          Keep the question concise and relevant to the conversation.
-          Do not repeat previous questions.
-          Do not provide canned scenarios or pre-defined questions.`;
+         `;
 };

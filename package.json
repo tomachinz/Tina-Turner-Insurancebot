@@ -1,7 +1,7 @@
 {
     "name": "Tina-Turner-Insurancebot",
     "version": "0.1.2",
-    "description": "A web app that chats with a potential car insurance customer and recommends the most suitable insurance policy based on the attributes of the users. Tina will recommend one of either Mechanical Breakdown Insurance (MBI), Comprehensive Car Insurance, or Third Party Car Insurance, and provide reasons to support the recommendation.",
+    "description": "A web app that chats with a potential car insurance customer and recommends the most suitable insurance policy based on the attributes of the users car make model and year. And the users driving experience. Tina will recommend one of either Mechanical Breakdown Insurance (MBI), Comprehensive Car Insurance, or Third Party Car Insurance, and provide reasons to support the recommendation, paying attention to the business rules: 1) MBI is not available to trucks and racing cars, 2) Comprehensive Car Insurance is only available to any motor vehicles less than 10 years old.",
     "private": true,
     "dependencies": {
         "@google/generative-ai": "^0.24.0",

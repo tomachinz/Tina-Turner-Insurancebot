@@ -9,5 +9,5 @@ const apiKey = process.env.GOOGLE_API_KEY;// Initialize Google Gemini AI with AP
 
 // Start server
 api.listen(port, () => {
-  console.log(`API server running at http://${hostname}:${port}`);
+  console.log(`API server running at http://localhost:${port}`);
 });

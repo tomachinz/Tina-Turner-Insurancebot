@@ -7,9 +7,9 @@ import { BiSend } from "react-icons/bi";
 
 const port = process.env.REACT_APP_SERVER_PORT || 4000;
 console.log(`Connecting to backend via port ${port}`);
-let sessionID;
+// let sessionID;
 
-const Chatbox = () => {
+const Insurancebot = () => {
   // Core state management for chat functionality
   const [carMakeModel, setCarMakeModel] = useState(""); // Stores the job position being interviewed for
   const [messages, setMessages] = useState([]); // Maintains chat history between user and AI
@@ -41,23 +41,23 @@ const Chatbox = () => {
     
     
     // Timestamp will be the session ID for saving chat history
-    async function sessionLogger(j) {
-      console.log("Starting interview for job title:", j);
-      const requestBody = { carMakeModel: j };
-      try {
-        sessionID = await axios.post(`http://localhost:${port}/api/start-session`, requestBody);
-        console.log(`Started sessionID: ${sessionID}`);
-      } catch(error) {
-        console.log(`ERROR STARTING SESSION: ${error}`);
-      }
-    }
+    // async function sessionLogger(j) {
+    //   console.log("Starting interview for job title:", j);
+    //   const requestBody = { carMakeModel: j };
+    //   try {
+    //     sessionID = await axios.post(`http://localhost:${port}/api/start-session`, requestBody);
+    //     console.log(`Started sessionID: ${sessionID}`);
+    //   } catch(error) {
+    //     console.log(`ERROR STARTING SESSION: ${error}`);
+    //   }
+    // }
 
-    sessionLogger(carMakeModel);
+    // sessionLogger(carMakeModel);
 
     setIsInterviewStarted(true);
     const initialMessage = {
       sender: "interviewer",
-      text: "So I take it you are looking for car insurance for your "+carMakeModel+"?",
+      text: "So I take it you are looking for car insurance for your "+carMakeModel+"? How many years driving experience do you have?",
     };
     setMessages([initialMessage]);
   };
@@ -170,7 +170,7 @@ const Chatbox = () => {
                   className={styles.startButton}
                   disabled={!carMakeModel.trim()}
                 >
-                  Set Car Make Mode and Year!
+                  Set Car Make Mode and Year
                 </button>
               </>
             )}
@@ -237,4 +237,4 @@ const Chatbox = () => {
   );
 };
 
-export default Chatbox;
+export default Insurancebot;

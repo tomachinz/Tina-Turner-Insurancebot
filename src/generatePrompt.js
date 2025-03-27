@@ -3,11 +3,13 @@ import {
   generateEvaluationPrompt,
   generateQuestionPrompt,
 } from "./insuranceUtils.js";
+
 // import {
 //   generateBasePrompt,
 //   generateEvaluationPrompt,
 //   generateQuestionPrompt,
 // } from "./promptUtils.js";
+
 /**
  * Generates the prompt for the AI based on interview context
  * @param {string} carMakeModel - The position being interviewed for

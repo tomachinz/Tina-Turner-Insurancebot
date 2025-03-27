@@ -2,7 +2,7 @@ import {
   generateBasePrompt,
   generateEvaluationPrompt,
   generateQuestionPrompt,
-} from "./promptUtils.js";
+} from "./insuranceUtils.js";
 
 /**
  * Generates the prompt for the AI based on interview context
